@@ -1,11 +1,16 @@
-<h1 align="center">Recipe Name: <%= @recipe.name.capitalize %></h1>
+<%= render 'shared/page_title', title: @recipe.name %>
 
 <div class="well col-md-8 col-md-offset-2">
+  <p class="center">
+    <!--  coming from application_helper  -->
+    <%= link_to gravatar_for(@recipe.chef), recipes_path %>
+  </p>
   <h4 class="center description">
-    <strong>Description: </strong>
+    <strong>Steps: </strong>
   </h4>
   <hr/>
-  <%= @recipe.description %>
+  <%= simple_format(@recipe.description) %>
+  <hr/>
   <p>Created by: </p>
   <p>
     <small><%= @recipe.chef.chefname %></small>
