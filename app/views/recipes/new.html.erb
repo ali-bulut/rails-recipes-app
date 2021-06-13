@@ -1,4 +1,25 @@
 <%= render 'shared/page_title', title: "Create a new recipe" %>
+
+<% if @recipe.errors.any? %>
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <div class="panel panel-danger">
+        <h2 class="panel-title">
+          <%= pluralize(@recipe.errors.count, "error") %>
+          prohobited this <%= @recipe.class %> from being saved:
+        </h2>
+        <div class="panel-body">
+          <ul>
+            <% @recipe.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
 <div class="row">
   <div class="col-md-12">
     <%= form_for(@recipe, :html => { class: "form-horizantal", role: "form" }) do |f| %>
