@@ -5,4 +5,8 @@ Rails.application.routes.draw do
   get "/pages/home", to: 'pages#home'
 
   resources :recipes
+
+  get '/signup', to: 'chefs#new'
+  # get all the routes except new
+  resources :chefs, except: [:new]
 end
