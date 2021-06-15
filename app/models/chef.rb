@@ -11,6 +11,8 @@ class Chef < ApplicationRecord
   # creating new chef because has_secure password always forces password to be not nil while creating
   validates :password, presence: true, length: { minimum: 5 }, allow_nil: true
 
-  has_many :recipes
+  # dependent: :destroy means that
+  # if chef is destroyed then all recipes associated with this chef will be destroyed
+  has_many :recipes, dependent: :destroy
   has_secure_password
 end
