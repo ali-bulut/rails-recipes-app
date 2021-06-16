@@ -6,6 +6,10 @@ Rails.application.routes.draw do
 
   resources :recipes
 
+  get '/login', to: 'sessions#new'
+  post '/login', to: 'sessions#create'
+  delete '/logout', to: 'sessions#destroy'
+
   get '/signup', to: 'chefs#new'
   # get all the routes except new
   resources :chefs, except: [:new]
