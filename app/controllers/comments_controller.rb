@@ -6,8 +6,10 @@ class CommentsController < ApplicationController
     @comment = @recipe.comments.build(comment_params)
     @comment.chef = current_chef
     if @comment.save
-      flash[:success] = "Comment created"
-      redirect_to @recipe
+      # first parameter is channel name
+      ActionCable.server.broadcast "comments", render(partial: "comments/comment", object: @comment)
+      # flash[:success] = "Comment created"
+      # redirect_to @recipe
     else
       flash[:danger] = "Comment not created"
       # to redirect same page
