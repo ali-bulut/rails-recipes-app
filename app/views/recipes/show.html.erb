@@ -31,3 +31,20 @@
     <%= link_to "Return to recipes list", recipes_path, class: "btn btn-xs btn-primary" %>
   </div>
 </div>
+
+<% if @recipe.comments != 0 %>
+  <div class="row">
+    <div class="col-md-8">
+      <h3>Prior Comments: </h3>
+      <div id="messages">
+        <%= render partial: 'comments/comments', object: @comments %>
+      </div>
+    </div>
+  </div>
+<% else %>
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <h3>No comments, yet</h3>
+    </div>
+  </div>
+<% end %>
