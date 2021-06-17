@@ -15,4 +15,8 @@ class Chef < ApplicationRecord
   # if chef is destroyed then all recipes associated with this chef will be destroyed
   has_many :recipes, dependent: :destroy
   has_secure_password
+
+  # dependent => if a chef deleted, comments that associated with that chef will also be deleted
+  # chef.comments.build(description: "test comment", recipe: @recipe) => it will automatically associate comment to chef
+  has_many :comments, dependent: :destroy
 end
