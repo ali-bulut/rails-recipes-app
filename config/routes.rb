@@ -18,4 +18,6 @@ Rails.application.routes.draw do
   # get all the routes except new
   resources :chefs, except: [:new]
   resources :ingredients, except: [:destroy]
+
+  mount ActionCable.server => "/cable"
 end
