@@ -3,7 +3,7 @@
 <div class="well col-md-8 col-md-offset-2">
   <p class="center">
     <!--  coming from application_helper  -->
-    <%= link_to gravatar_for(@recipe.chef), recipes_path %>
+    <%= link_to gravatar_for(@recipe.chef), chef_path(@recipe.chef) %>
   </p>
   <h4 class="center description">
     <strong>Steps: </strong>
@@ -11,6 +11,9 @@
   <hr/>
   <%= simple_format(@recipe.description) %>
   <hr/>
+  <% if @recipe.ingredients.any? %>
+    <p>Ingredients: <%= render @recipe.ingredients %></p>
+  <% end %>
   <p>Created by: </p>
   <p>
     <small><%= @recipe.chef.chefname %></small>

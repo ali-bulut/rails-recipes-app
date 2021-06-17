@@ -52,7 +52,10 @@ class RecipesController < ApplicationController
   end
 
   def recipe_params
-    params.require(:recipe).permit(:name, :description)
+    # ingredient_ids => named in recipes form
+    # # by giving that name, Rails will understand that program tries to assign list of ingredient ids to that recipe
+    # and it'll automatically create records for appropriate table.
+    params.require(:recipe).permit(:name, :description, ingredient_ids: [])
   end
 
   def require_same_user

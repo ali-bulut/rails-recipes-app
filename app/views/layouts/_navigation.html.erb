@@ -15,15 +15,26 @@
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <%= link_to "View All Recipes", recipes_path, class: "dropdown-item" %>
             <%= link_to "Create new recipe", new_recipe_path, class: "dropdown-item" %>
-            <a class="dropdown-item" href="#">Another action</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Something else here</a>
           </div>
         </li>
       <% else %>
         <li class="nav-item"><%= link_to "Recipes", recipes_path, class: "nav-link" %></li>
-
       <% end %>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Ingredients
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <%= link_to "View All Ingredients", ingredients_path, class: "dropdown-item" %>
+          <% Ingredient.all.each do |ing| %>
+            <%= link_to "- #{ing.name.capitalize}", ingredient_path(ing), class: "dropdown-item" %>
+          <% end %>
+          <% if logged_in? and current_chef.admin? %>
+            <div class="dropdown-divider"></div>
+            <%= link_to "Create New Ingredient", new_ingredient_path, class: "dropdown-item" %>
+          <% end %>
+        </div>
+      </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
       <ul class="navbar-nav mr-auto">
