@@ -11,6 +11,9 @@
   <hr/>
   <%= simple_format(@recipe.description) %>
   <hr/>
+  <% if @recipe.ingredients.any? %>
+    <p>Ingredients: <%= render @recipe.ingredients %></p>
+  <% end %>
   <p>Created by: </p>
   <p>
     <small><%= @recipe.chef.chefname %></small>
