@@ -12,6 +12,6 @@ consumer.subscriptions.create("CommentsChannel", {
   received(data) {
     // Called when there's incoming data on the websocket for this channel
     // that means if new data shows up just add this data to top of messages div.
-    $("#messages").prepend(data)
+    $(data).insertBefore("#messages .comment-section:first")
   }
 });
