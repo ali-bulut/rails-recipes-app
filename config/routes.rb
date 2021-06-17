@@ -4,7 +4,11 @@ Rails.application.routes.draw do
   root "pages#home"
   get "/pages/home", to: 'pages#home'
 
-  resources :recipes
+  resources :recipes do
+    # nested routes
+    # recipes/<recipe_id>/comment#create
+    resources :comments, only: [:create]
+  end
 
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
